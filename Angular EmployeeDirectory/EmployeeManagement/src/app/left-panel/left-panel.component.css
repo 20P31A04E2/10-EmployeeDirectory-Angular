@@ -1,0 +1,129 @@
+.top-content{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+}
+
+.logo-area img{
+    margin-top: 1rem;
+}
+
+.dashboard-all{
+    padding-top: 1.5rem;
+}
+
+.dashboard, .employees, .roles, .access{
+    display: flex;
+    margin: 1.5rem 0rem;
+}
+
+.employees{
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    padding: 0.7rem 0.7rem 0.7rem 0.2rem;
+    align-items: center;
+}
+
+.employees p{
+    padding-left: 1rem;
+}
+
+.employees img{
+    width: 1.4rem;
+}
+
+.roles, .access{
+    align-items: center;
+}
+
+.roles-left{
+    display: flex;
+    flex: 1;
+}
+
+.roles-right{
+    padding-right:1rem;
+}
+
+.roles i, .access i{
+    color:rgb(117, 117, 117);
+    font-size: 0.7rem;
+}
+
+.access-left{
+    display: flex;
+    flex: 1;
+}
+
+.roles-left p, .access-left p{
+    padding-top: 0.4rem;
+}
+
+.access-right{
+    padding-right:1rem;
+}
+
+.dashboard-img, .roles-img, .assign-img{
+    padding-right: 1rem;
+}
+
+.employees a, .roles-left a{
+    text-decoration: none;
+    color:black;
+}
+
+.update{
+    background-color: rgb(253, 243, 243);
+    border-radius:6px;
+    margin:0rem 1rem 0.5rem 0rem;
+    position:absolute;
+    bottom:0;
+}
+
+.update-content{
+    padding:1rem 1rem;
+}
+
+.update-content .update-title{
+    color: red;
+}
+
+.dismiss-btn, .accept-btn{
+    width: 4.5rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin: 0.3rem 0.2rem;
+}
+
+.dismiss-btn{
+    color: red;
+    background-color: rgb(250, 217, 217);
+    font-weight: bold;
+}
+
+.accept-btn{
+    color:white;
+    background-color: rgb(251, 57, 57);
+    font-weight: bold;
+}
+
+.main-dashboard .active {
+    background-color: pink;
+    color: red;
+    border-right: 2px solid red;
+}
+
+.main-dashboard .active p {
+    color: red;
+}
+
+
+@media(max-width: 768px) {
+
+    .update{
+        display: none;
+    }
+}

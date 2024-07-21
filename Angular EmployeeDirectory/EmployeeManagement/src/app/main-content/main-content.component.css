@@ -1,0 +1,379 @@
+.content-section {
+    width: 99%;
+}
+
+.operations {
+    display: flex;
+    margin-left: 0.5rem;
+}
+
+.operations .op-content {
+    width: 65%;
+}
+
+.operations .op-content p {
+    margin: 0.7rem 0rem;
+}
+
+.operations .op-btn {
+    width: 35%;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    justify-content: flex-end;
+}
+
+.operations .op-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.export-btn {
+    background-color: white;
+    border: 1px solid rgb(117, 117, 117);
+    width: 9.3rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    color: rgb(117, 117, 117);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add-btn {
+    background-color: rgb(251, 57, 57);
+    box-shadow: 2px 1px 10px rgb(220, 220, 220);
+    border: none;
+    width: 14.5rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: inherit;
+    margin-top: 0.3rem;
+}
+
+.filter i {
+    width: 1rem;
+    height: 1rem;
+    padding: 0.3rem;
+    margin: 0.4rem 1rem 0.4rem 0.3rem;
+    font-size: 1.5rem;
+}
+
+.filter button {
+    display: flex;
+    margin: 0.3rem;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 3px;
+}
+
+.filter button:hover {
+    cursor: pointer;
+}
+
+#refresh-icon {
+    padding: 0.2rem 0rem 0rem 0rem;
+    cursor: pointer;
+}
+
+.filter-dropdowns {
+    width: 100%;
+    display: flex;
+    background-color: rgb(250, 217, 217);
+    border-radius: 4px;
+    border: 1px red solid;
+}
+
+.filter-dropdowns .left-filter {
+    width: 70%;
+    display: flex;
+}
+
+.filter-dropdowns .right-filter {
+    width: 30%;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.left-filter p {
+    padding: 1.2rem 0rem 0rem 1rem;
+    color: red;
+}
+
+.multiselect-wrapper {
+    display: flex;
+}
+
+.multiselect-dropdown {
+    position: relative;
+    width: 180px;
+    max-height: 40px;
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    z-index: 3;
+    font-size: 0.8rem;
+}
+
+.select-box {
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+}
+
+.selected {
+    color: black;
+    width: 95%;
+}
+
+.arrow i {
+    justify-content: flex-end;
+}
+
+.multiselect-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 75px;
+    overflow-y: auto;
+}
+
+.multiselect-dropdown-content label {
+    display: block;
+    padding: 5px;
+}
+
+.multiselect-dropdown-content label:hover {
+    background-color: #b0b0b0;
+    font-weight: bold;
+}
+
+.right-filter button {
+    margin: 0.9rem 0.4rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.right-filter .reset {
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 4px;
+    color: red;
+    cursor: pointer;
+}
+
+.right-filter .apply {
+    background-color: rgb(249, 47, 47);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wrapper-class {
+    margin-top: 0.5rem;
+    border-radius: 20px 0px;
+    box-shadow: 5px 0 10px -5px #888888, -5px 0 10px -5px #888888;
+}
+
+.delete {
+    width: 100%;
+    display: flex;
+    background-color: white;
+    border-radius: 4px;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.delete .delete-btn {
+    width: 50%;
+    display: flex;
+}
+
+.delete button {
+    cursor: pointer;
+}
+
+.delete .table-add {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.delete .delete-btn .down-arrow-img {
+    margin: 1.2rem 0.3rem 0rem 1.5rem;
+    width: 1rem;
+    height: 1.5rem;
+}
+
+.delete .delete-btn button {
+    padding: 0.2rem 0.6rem;
+    margin: 0.8rem 0.3rem;
+    background-color: rgb(249, 47, 47);
+    color: white;
+    border-radius: 4px;
+    border: none;
+    width: 6rem;
+}
+
+.delete .table-add img {
+    margin: 1rem 1.5rem;
+    width: 2rem;
+    height: 2rem;
+}
+
+.table-wrapper {
+    max-height: 320px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th {
+    text-align: start;
+    padding: 0.9rem 0.5rem 0.9rem 1.3rem;
+    background-color: rgb(243, 242, 241);
+    font-size: 0.8rem;
+}
+
+table td {
+    padding: 1rem 0rem 0.5rem 1.2rem;
+}
+
+table thead {
+    position: sticky;
+    top: 0;
+    z-index: 0;
+}
+
+table tbody {
+    position: block;
+}
+
+table tr {
+    border-bottom: 1px solid rgb(148, 148, 148);
+}
+
+table tr:hover {
+    background-color: rgb(250, 217, 217);
+    cursor: pointer;
+}
+
+table .th-content {
+    display: flex;
+}
+
+table .th-icons i {
+    margin: 0.05rem 0rem 0rem 0.15rem
+}
+
+.status-btn {
+    width:4rem;
+    border-radius: 5px;
+    padding: 0.2rem 0.4rem;
+    color:black;
+    font-weight: bold;
+}
+
+.btn-active {
+    background-color:#70ff9f;
+}
+
+.btn-inactive {
+    background-color: #ff8465;
+}
+
+.emp-details {
+    display: flex;
+}
+
+.profile-img img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.emp-name {
+    margin-left: 0.3rem;
+}
+
+.rightFilterbtns {
+    display: flex !important;
+    justify-content: flex-end;
+
+}
+
+#mySelect {
+    border: none;
+    outline: none;
+    appearance: none;
+}
+
+
+table tr:hover #mySelect {
+    background-color: rgb(250, 217, 217);
+}
+
+
+#mySelect option {
+    background-color: white;
+    color: black;
+}
+
+
+@media(max-width: 768px) {
+
+    .filter {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #right-filter button {
+        display: flex;
+        justify-content: center;
+    }
+
+    .multiselect-dropdown {
+        width: 110px;
+    }
+
+    .search-rightpart p {
+        display: none;
+    }
+
+    .export-btn img {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .table-wrapper {
+        width: 100%;
+        max-height: 170px;
+        overflow-y: scroll;
+        margin: 0;
+    }
+    
+    table th {
+        text-align: start;
+        padding: 1rem;
+        background-color: rgb(243, 242, 241);
+    }
+
+    table td {
+        padding: 1rem;
+    }
+}

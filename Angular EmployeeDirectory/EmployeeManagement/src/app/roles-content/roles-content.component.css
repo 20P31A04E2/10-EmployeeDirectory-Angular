@@ -1,0 +1,259 @@
+.roles-content-section {
+    width: 99%;
+    padding-left: 0.7rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.operations {
+    display: flex;
+}
+
+.operations .op-content {
+    width: 65%;
+    margin-top: 0.5rem;
+}
+
+.operations .op-content p {
+    padding-bottom: 0.3rem;
+}
+
+.operations .op-btn {
+    width: 35%;
+    display: flex;
+    margin-top: 0.7rem;
+    justify-content: flex-end;
+}
+
+.add-btn {
+    background-color: rgb(251, 57, 57);
+    box-shadow: 2px 1px 10px rgb(220, 220, 220);
+    border: none;
+    width: 11.5rem;
+    height: 2.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.filter {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    width: inherit;
+    margin-top: 0.3rem;
+}
+
+.filter i {
+    width: 1rem;
+    height: 1rem;
+    padding: 0.3rem;
+    margin: 0.4rem 1rem 0.4rem 0.3rem;
+    font-size: 1.5rem;
+}
+
+.filter button {
+    display: flex;
+    margin: 0.3rem;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 3px;
+}
+
+.filter button:hover {
+    cursor: pointer;
+}
+
+#refresh-icon {
+    padding: 0.2rem 0rem 0rem 0rem;
+    cursor: pointer;
+}
+
+.filter-dropdowns {
+    width: 100%;
+    display: flex;
+    background-color: rgb(250, 217, 217);
+    border-radius: 4px;
+    border: 1px red solid;
+    margin-top: 0.5rem;
+}
+
+.filter-dropdowns .left-filter {
+    width: 70%;
+    display: flex;
+}
+
+.filter-dropdowns .right-filter {
+    width: 30%;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.left-filter p {
+    padding: 1.2rem 0rem 0rem 1rem;
+    color: red;
+}
+
+.multiselect-wrapper {
+    display: flex;
+}
+
+.multiselect-dropdown {
+    position: relative;
+    width: 180px;
+    max-height: 40px;
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    z-index: 3;
+    font-size: 0.8rem;
+}
+
+.select-box {
+    border: 1px solid red;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+}
+
+.selected {
+    color: black;
+    width: 95%;
+}
+
+.arrow i {
+    justify-content: flex-end;
+}
+
+.multiselect-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffff;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 75px;
+    overflow-y: auto;
+}
+
+.multiselect-dropdown-content label {
+    display: block;
+    padding: 5px;
+}
+
+.multiselect-dropdown-content label:hover {
+    background-color: #b0b0b0;
+    font-weight: bold;
+}
+
+.right-filter button {
+    margin: 0.9rem 0.4rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.right-filter .reset {
+    background-color: white;
+    border: 1px solid red;
+    border-radius: 4px;
+    color: red;
+    cursor: pointer;
+}
+
+.right-filter .apply {
+    background-color: rgb(249, 47, 47);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.details-wrapper{
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
+.role-details {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+
+}
+
+.details-card {
+    width: 32.3%;
+    display: block;
+    margin: 0.5rem 0.4%;
+    border: 1px solid rgb(91, 91, 91);
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 2px 0 2px -5px #888888, -5px 0 5px -5px #888888;
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
+}
+
+#line {
+    margin-top: 0.7rem;
+}
+
+.icon img {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-right: 0.3rem;
+}
+
+.icon span {
+    padding-top: -1rem;
+}
+
+.right-text {
+    text-align: right;
+    padding: 0rem 0.7rem 0rem 0.5rem;
+}
+
+.right-text .right-arrow{
+    font-size: 1.2rem;
+    font-weight: bolder;
+}
+
+.right-text span,
+img {
+    cursor: pointer;
+}
+
+.edit-symbol {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.many-users  {
+    padding-right: 0.7rem;
+}
+
+.right-text img {
+    margin-top: 0.7rem;
+}
+
+.error{
+    font-size: 1rem;
+    font-weight: bold;
+    color:red;
+}

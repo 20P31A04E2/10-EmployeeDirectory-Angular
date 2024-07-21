@@ -1,0 +1,47 @@
+<div class="top-content">
+    <div class="logo-area">
+        <img src="assets\TezoLogo.svg" alt="TezoLogo">
+    </div>
+    <div class="main-dashboard">
+        <div class="all">
+            <p class="dashboard-all">ALL</p>
+            <div class="dashboard">
+                <img src="assets/Horizontal nav/Dashboard.svg" alt="icon" class="dashboard-img">
+                <p><b>Dashboard</b></p>
+            </div>
+            <div class="employees" routerLinkActive="active">
+                <img src="assets/team_svgrepo.com.svg" alt="icon" class="employee-img">
+                <p><a [routerLink]="['/']"><b>Employees</b></a></p>
+            </div>
+        </div>
+        <div class="role">
+            <p>ROLE/USER MANAGEMENT</p>
+            <div class="roles" routerLinkActive="active">
+                <div class="roles-left">
+                    <img src="assets/Horizontal nav/Roles.svg" alt="icon" class="roles-img">
+                    <p><a [routerLink]="['/roles']"><b>Roles</b></a></p>
+                </div>
+                <div class="roles-right">
+                    <i class="fas fa-greater-than"></i>
+                </div>
+            </div>
+            <div class="access">
+                <div class="access-left">
+                    <img src="assets/Horizontal nav/assign user.svg" alt="icon" class="assign-img">
+                    <p><b>Access rights</b></p>
+                </div>
+                <div class="access-right">
+                    <i class="fas fa-greater-than"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="update" id="update">
+    <div class="update-content">
+        <p class="update-title"><b>Install new updates 2.3.1A</b></p>
+        <p>Allow to launch the new update for the AD application.</p>
+        <button class="dismiss-btn">Dismiss</button>
+        <button class="accept-btn">Accept</button>
+    </div>
+</div>

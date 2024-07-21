@@ -1,0 +1,71 @@
+<div class="role-details-wrapper">
+    <div class="operations">
+        <div class="op-content">
+            <p><b>Roles > Employees</b></p>
+            <p>All the roles are configured here.</p>
+        </div>
+        <div class="op-btn">
+            <button class="add-btn"><a href="add-employee.html">+ ADD EMPLOYEE</a></button>
+        </div>
+    </div>
+    <!--Operations ends here-->
+
+    <!--Filter section starts here-->
+    <div class="role-description">
+        <h3>Role description</h3>
+        <p>Configure the providers that are available to users when they sign in.
+            Configure the providers that are available to users when they sign in.
+            Configure the providers that are available to users when they sign in.
+            Configure the providers that are available to users when they sign in.
+        </p>
+    </div>
+    <div class="role-details">
+        <div class="details-card" *ngFor ="let emp of employees">
+            <div class="line">
+                <div class="icon-profile">
+                    <div class="many-users"><i class="fas fa-user-circle"></i>
+                    </div>
+                    <div>
+                        <span><b>
+                                {{emp.firstName}} {{emp.lastName}}
+                            </b><br />{{emp.roleName}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="line">
+                <div class="icon">
+                    <img src="assets/Vector (1).svg" alt="">
+                    <span>{{emp.employeeId}}</span>
+                </div>
+            </div>
+            <div class="line">
+                <div class="icon">
+                    <img src="assets/email-1_svgrepo.com.svg" alt="" class="">
+                    <span>{{emp.email}}</span>
+                </div>
+            </div>
+            <div class="line">
+                <div class="icon">
+                    <img src="assets/team_svgrepo.com.svg" alt="">
+                    <span>{{emp.departmentName}}</span>
+                </div>
+            </div>
+            <div class="line">
+                <div class="icon">
+                    <img src="assets/location-pin-alt-1_svgrepo.com.svg" alt="">
+                    <span>{{emp.locationName}}</span>
+                </div>
+            </div>
+            <div class="line2">
+                <div class="icon"></div>
+                <div class="right-text">
+                    <span>View </span>
+                    <span class="right-arrow">&rarr;</span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!employees || employees.length==0" class="error">
+            No Employees found.
+        </div>
+    </div>
+</div>

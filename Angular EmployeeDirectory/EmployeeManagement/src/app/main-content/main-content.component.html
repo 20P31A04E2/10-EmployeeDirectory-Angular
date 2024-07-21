@@ -1,0 +1,167 @@
+<!--Operations starts here-->
+<div class="content-section">
+    <div class="operations">
+        <div class="op-content">
+            <p><b>Employees</b></p>
+            <p>Find all of your company's employee account and their associated roles.</p>
+        </div>
+        <div class="op-btn">
+            <button class="export-btn">
+                <img src="assets/Masked Icon.png" alt="">EXPORT
+            </button>
+            <button class="add-btn"><a [routerLink]="['/addEmployee']">+ ADD EMPLOYEE</a></button>
+        </div>
+    </div>
+
+    <div class="filter">
+        <i class="fas fa-filter" id="filter-img"></i>
+        <button *ngFor="let button of buttonList" class="letter-btn" (click)="buttonFiltering(button)"
+            [style.background-color]="button.backgroundColor" [style.color]="button.fontColor">{{button.value}}</button>
+        <i class="fas fa-sync" id="refresh-icon" (click)="filterReset()" title="Clear filters"></i>
+    </div>
+
+    <div class="filter-dropdowns">
+        <div class="left-filter">
+            <p>Filter</p>
+            <div class="multiselect-wrapper">
+
+                <div class="multiselect-dropdown" data-filter="Status">
+                    <div class="select-box" (click)="toggleDropdown('statusDropdownVisible')">
+                        <div class="selected">Status : {{statusSelectedValues.length}} selected</div>
+                        <div class="arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                    <div class="multiselect-dropdown-content"
+                        [style.display]="dropdownStates.statusDropdownVisible ? 'block' : 'none'">
+                        <label>
+                            <input type="checkbox" [value]="'Active'" [(ngModel)]="statusCheckedValues['Active']"
+                                (change)="onStatusCheckboxChange('Active', $event)"> Active
+                        </label>
+                        <label>
+                            <input type="checkbox" [value]="'Inactive'" [(ngModel)]="statusCheckedValues['Inactive']"
+                                (change)="onStatusCheckboxChange('Inactive', $event)"> Inactive
+                        </label>
+                    </div>
+                </div>
+
+                <div class="multiselect-dropdown" data-filter="Location">
+                    <div class="select-box" (click)="toggleDropdown('locationDropdownVisible')">
+                        <div class="selected">Location : {{locationSelectedValues.length}} selected</div>
+                        <div class="arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                    <div class="multiselect-dropdown-content"
+                        [style.display]="dropdownStates.locationDropdownVisible ? 'block' : 'none'">
+                        <div *ngFor="let location of allLocations">
+                            <label>
+                                <input type="checkbox" [value]="location.locationName"
+                                    [(ngModel)]="locationCheckedValues[location.locationName]"
+                                    (change)="onLocationCheckboxChange(location.locationName, $event)">
+                                {{location.locationName}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="multiselect-dropdown" data-filter="Department">
+                    <div class="select-box" (click)="toggleDropdown('departmentDropdownVisible')">
+                        <div class="selected">Department : {{departmentSelectedValues.length}} selected</div>
+                        <div class="arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                    <div class="multiselect-dropdown-content"
+                        [style.display]="dropdownStates.departmentDropdownVisible ? 'block' : 'none'">
+                        <div *ngFor="let department of allDepartments">
+                            <label>
+                                <input type="checkbox" [value]="department.departmentName"
+                                    [(ngModel)]="departmentCheckedValues[department.departmentName]"
+                                    (change)="onDepartmentCheckboxChange(department.departmentName, $event)"> {{
+                                department.departmentName
+                                }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-filter" id="right-filter" *ngIf="isAnyCheckboxChecked()">
+            <button class="reset" (click)="filterReset()">Reset</button>
+            <button class="apply" (click)="filteringAndSorting()">Apply</button>
+        </div>
+    </div>
+
+    <div class="wrapper-class">
+        <!--Delete section starts here-->
+        <div class="delete">
+            <div class="delete-btn">
+                <img src="assets/arrow-turn left -down.png" alt="down-arrow" class="down-arrow-img">
+                <button (click)="deleteSelectedEmployees()" *ngIf="selectedEmployeeIds.length > 0 && isDeleteButtonEnabled">Delete</button>
+            </div>
+            <div class="table-add">
+                <img src="assets/table-add.png" alt="table-adding">
+            </div>
+        </div>
+        <!-- Delete section ends here-->
+
+        <!--Table starts here-->
+        <div class="table-wrapper">
+            <table id="myTable">
+                <thead id="tableHead">
+                    <tr>
+                        <th><input type="checkbox" name="checkbox" (change)="toggleAllSelection($event)"
+                                [checked]="allChecked" title="Select all rows to delete"></th>
+                        <th *ngFor="let header of tableHeader" (click)="onSortChange(header.value)">
+                            <div class="th-content">
+                                <div>
+                                    {{header.value}}
+                                </div>
+                                <div class="th-icons">
+                                    <i class="fas fa-sort"
+                                        *ngIf="sortBy !== header.value || (sortOrder !== 'asc' && sortOrder !== 'desc')"></i>
+                                    <i class="fas fa-sort-up"
+                                        *ngIf="sortBy === header.value && sortOrder === 'asc'"></i>
+                                    <i class="fas fa-sort-down"
+                                        *ngIf="sortBy === header.value && sortOrder === 'desc'"></i>
+                                </div>
+                            </div>
+                        </th>
+                        <th title="Actions">.....</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList">
+                    <tr *ngFor="let emp of employees">
+                        <td><input type="checkbox" [checked]="isSelected(emp.employeeId)"
+                                (change)="toggleSelection(emp.employeeId)" title="Select & then delete">
+                        </td>
+                        <td class="emp-details">
+                            <div class="profile-img">
+                                <img src="assets/ppFive.png">
+                            </div>
+                            <div class="emp-name">
+                                {{ emp.firstName }} {{emp.lastName}}<br />{{emp.email}}
+                            </div>
+                        </td>
+                        <td>{{ emp.locationName }}</td>
+                        <td>{{ emp.departmentName }}</td>
+                        <td>{{ emp.roleName }}</td>
+                        <td>{{ emp.employeeId }}</td>
+                        <td> <button class="status-btn"
+                                [ngClass]="{'btn-active': emp.status === 'Active', 'btn-inactive': emp.status !== 'Active'}">
+                                {{ emp.status }}
+                            </button></td>
+                        <td>{{ emp.joinDate | date:'dd/MM/yyyy'}}</td>
+                        <td><select id="mySelect" (change)="selectEmployeeToDelete(emp.employeeId, $event)">
+                                <option>....</option>
+                                <option>Edit</option>
+                                <option >Delete</option>
+                            </select></td>
+                    </tr>
+                    <tr *ngIf="!employees || employees.length==0">
+                        <td colspan="9">
+                            No Employees found.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--Table ends here-->
+    </div>
+</div>

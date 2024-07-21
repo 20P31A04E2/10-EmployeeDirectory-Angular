@@ -1,0 +1,223 @@
+<!--Employee addes successfully alert starts here-->
+<div *ngIf="showAlert" id="alertBox" class="alertBox">
+    <div class="alertContent">
+        <span class="successMessage">{{isEditMode ? 'Employee updated successfully' : 'Employee added successfully'}}</span>
+    </div>
+</div>
+<!--Employee addes successfully alert ends here-->
+
+<!--Adding new employee starts here-->
+<div class="add-employee-wrapper">
+    <h3>{{isEditMode ? 'Update Employee' : 'Add Employee'}}</h3>
+    <div class="form-wrapper">
+        <form [formGroup]="addEmployeeForm" *ngIf="addEmployeeForm" (ngSubmit)="onSubmit()" id="addForm">
+            <div class="profile-pic">
+                <img src="assets/profile.jpg" alt="" id="profileImage">
+                <button type="button" id="uploadButton">
+                    <input type="file" id="uploadInput" accept="image/*" style="display: none;">Upload Profile Picture
+                </button>
+            </div>
+            <p id="Info-heading"><b>Personal Information</b></p>
+            <div class="emp-no">
+                <label>Emp No</label>
+                <input type="text" id="empno" placeholder="Should be unique" formControlName="employeeId">
+                <div
+                    *ngIf="addEmployeeForm.controls['employeeId'].invalid && (addEmployeeForm.controls['employeeId'].dirty || addEmployeeForm.controls['employeeId'].touched || isFormValid)">
+                    <div *ngIf="addEmployeeForm.controls['employeeId'].errors?.['required']" class="error">
+                        Employee ID is required
+                    </div>
+                    <div *ngIf="addEmployeeForm.controls['employeeId'].errors?.['pattern']" class="error">
+                     Employee ID should be in the format of TZ followed by 4 digits like TZ0000.
+                    </div>
+                </div>
+            </div>
+            <div class="names">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" placeholder="Text" id="fname" formControlName="firstName">
+                    <div
+                        *ngIf="addEmployeeForm.controls['firstName'].invalid &&(addEmployeeForm.controls['firstName'].dirty || addEmployeeForm.controls['firstName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['firstName'].errors?.['required']" class="error">
+                            Firstname is required.
+                        </div>
+                        <div *ngIf="addEmployeeForm.controls['firstName'].errors?.['minlength']" class="error">
+                            Firstname must be at least 5 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" placeholder="Text" id="lname" formControlName="lastName">
+                    <div
+                        *ngIf="addEmployeeForm.controls['lastName'].invalid &&(addEmployeeForm.controls['lastName'].dirty || addEmployeeForm.controls['lastName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['lastName'].errors?.['required']" class="error">
+                            Lastname is required.
+                        </div>
+                        <div *ngIf="addEmployeeForm.controls['lastName'].errors?.['minlength']" class="error">
+                            Lastname must be at least 5 characters long.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Date of Birth</label>
+                    <input type="date" id="dob" formControlName="dateOfBirth">
+                    <div
+                        *ngIf="addEmployeeForm.controls['dateOfBirth'].invalid &&(addEmployeeForm.controls['dateOfBirth'].dirty || addEmployeeForm.controls['dateOfBirth'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['dateOfBirth'].errors?.['required']" class="error">
+                            Date of Birth is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div>
+                    <label>Email ID</label>
+                    <input type="email" placeholder="joe.j@Technovert.com" id="email" formControlName="email">
+                    <div
+                        *ngIf="addEmployeeForm.controls['email'].invalid && (addEmployeeForm.controls['email'].dirty || addEmployeeForm.controls['email'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['email'].errors?.['required']" class="error">
+                            Email is required.
+                        </div>
+                        <div *ngIf="addEmployeeForm.controls['email'].errors?.['email']" class="error">
+                            Invalid email format.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Mobile Number</label>
+                    <input type="tel" placeholder="0000000000" formControlName="phone" id="phone" maxlength="10">
+                    <div
+                        *ngIf="addEmployeeForm.controls['phone'].invalid && (addEmployeeForm.controls['phone'].dirty || addEmployeeForm.controls['phone'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['phone'].errors?.['minlength']" class="error">
+                            Phone number must be a valid 10-digit number.
+                        </div>
+                        <div *ngIf="addEmployeeForm.controls['phone'].errors?.['maxlength']" class="error">
+                            Phone number must be a valid 10-digit number.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="emp-info"><b>Employment information</b></p>
+            <div class="joining-info">
+                <div>
+                    <label>Joining Date</label>
+                    <input type="date" name="" id="joindt" formControlName="joinDate">
+                    <div
+                        *ngIf="addEmployeeForm.controls['joinDate'].invalid &&(addEmployeeForm.controls['joinDate'].dirty || addEmployeeForm.controls['joinDate'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['joinDate'].errors?.['required']" class="error">
+                            Join date is required.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Location</label>
+                    <select id="location" (change)="onLocationChange($event)" formControlName="locationName">
+                        <option>Select Location</option>
+                        <option *ngFor="let location of allLocations" [value]="location.locationId">{{
+                            location.locationName }}</option>
+                    </select>
+                    <div
+                        *ngIf="addEmployeeForm.controls['locationName'].invalid &&(addEmployeeForm.controls['locationName'].dirty || addEmployeeForm.controls['locationName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['locationName'].errors?.['required']" class="error">
+                            Location is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="job-info">
+                <div>
+                    <label>Job Title</label>
+                    <select id="role" (change)="onRoleChange($event)" formControlName="roleName">
+                        <option>Select Role/Job title</option>
+                        <option *ngFor="let jobTitle of filteredRoles" [value]="jobTitle.rolesId">{{ jobTitle.roleName
+                            }}</option>
+                    </select>
+                    <div
+                        *ngIf="addEmployeeForm.controls['roleName'].invalid &&(addEmployeeForm.controls['roleName'].dirty || addEmployeeForm.controls['roleName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['roleName'].errors?.['required']" class="error">
+                            Role/Job title is required.
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Department</label>
+                    <select id="department" (change)="onDepartmentChange($event)" formControlName="departmentName">
+                        <option>Select Department</option>
+                        <option *ngFor="let department of filteredDepartments" [value]="department.departmentId">{{
+                            department.departmentName }}</option>
+                    </select>
+                    <div
+                        *ngIf="addEmployeeForm.controls['departmentName'].invalid &&(addEmployeeForm.controls['departmentName'].dirty || addEmployeeForm.controls['departmentName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['departmentName'].errors?.['required']" class="error">
+                            Department is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="team-info">
+                <div class="searchDropdown">
+                    <label>Assign Manager</label>
+                    <input type="text" id="searchInput" class="managerName" placeholder="Search"
+                        formControlName="manager" [(ngModel)]="searchQueryManager" (focus)="onManagerFocus()"
+                        (input)="onManagerInputChange($event)">
+                    <div *ngIf="showManagerDropdown" class="dropdown-container">
+                        <div *ngFor="let manager of filteredManagers" class="dropdown-content">
+                            <div class="option">
+                                <div class="opt-left">
+                                    <i class="fas fa-user-circle profile-i"></i>
+                                    <span class="name">{{ manager.firstName }}</span>
+                                </div>
+                                <div class="opt-right">
+                                    <input type="checkbox" class="option-checkbox"
+                                        [checked]="selectedManagers.includes(manager.firstName)"
+                                        (change)="toggleManagerSelection(manager.firstName)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="addEmployeeForm.controls['manager'].invalid &&(addEmployeeForm.controls['manager'].dirty || addEmployeeForm.controls['manager'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['manager'].errors?.['required']" class="error">
+                            Manager is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="searchDropdown">
+                    <label>Assign Project</label>
+                    <input type="text" id="searchInput" class="projectName" placeholder="Search"
+                        formControlName="projectName" [(ngModel)]="searchQueryProject" (focus)="onProjectFocus()"
+                        (input)="onProjectInputChange($event)">
+                    <div *ngIf="showProjectDropdown" class="dropdown-container">
+                        <div *ngFor="let project of filteredProjects" class="dropdown-content">
+                            <div class="option">
+                                <div class="opt-left">
+                                    <i class="fas fa-user-circle profile-i"></i>
+                                    <span class="name">{{ project.projectName }}</span>
+                                </div>
+                                <div class="opt-right">
+                                    <input type="checkbox" class="option-checkbox"
+                                        [checked]="selectedProjects.includes(project.projectName)"
+                                        (change)="toggleProjectSelection(project.projectName)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="addEmployeeForm.controls['projectName'].invalid &&(addEmployeeForm.controls['projectName'].dirty || addEmployeeForm.controls['projectName'].touched || isFormValid)">
+                        <div *ngIf="addEmployeeForm.controls['projectName'].errors?.['required']" class="error">
+                            Project is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottomButtons">
+                <button class="cancel-btn"><a [routerLink]="['/']">Cancel</a></button>
+                <button type="submit" class="add-btn" id="update-btn">{{isEditMode ? 'Update Employee' : 'Add Employee'}}</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!--Adding new employee ends here-->

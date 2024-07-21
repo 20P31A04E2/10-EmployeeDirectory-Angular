@@ -1,0 +1,107 @@
+<div class="roles-content-section">
+    <div class="operations">
+        <div class="op-content">
+            <p><b>Roles</b></p>
+            <p>All the roles are configured here.</p>
+        </div>
+        <div class="op-btn">
+            <button class="add-btn"><a [routerLink]="['/addRole']">+ ADD ROLE</a></button>
+        </div>
+    </div>
+    <div class="filter-dropdowns">
+        <div class="left-filter">
+            <p>Filter</p>
+            <div class="multiselect-wrapper">
+                <div class="multiselect-dropdown" data-filter="Location">
+                    <div class="select-box" (click)="toggleDropdown('locationDropdownVisible')">
+                        <div class="selected">Location : {{locationSelectedValues.length}} selected</div>
+                        <div class="arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                    <div class="multiselect-dropdown-content"
+                        [style.display]="dropdownStates.locationDropdownVisible ? 'block' : 'none'">
+                        <div *ngFor="let location of allLocations">
+                            <label>
+                                <input type="checkbox" [value]="location.locationName"
+                                    [(ngModel)]="locationCheckedValues[location.locationName]"
+                                    (change)="onLocationCheckboxChange(location.locationName, $event)">
+                                {{location.locationName}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="multiselect-dropdown" data-filter="Department">
+                    <div class="select-box" (click)="toggleDropdown('departmentDropdownVisible')">
+                        <div class="selected">Department : {{departmentSelectedValues.length}} selected</div>
+                        <div class="arrow"><i class="fas fa-caret-down"></i></div>
+                    </div>
+                    <div class="multiselect-dropdown-content"
+                        [style.display]="dropdownStates.departmentDropdownVisible ? 'block' : 'none'">
+                        <div *ngFor="let department of allDepartments">
+                            <label>
+                                <input type="checkbox" [value]="department.departmentName"
+                                    [(ngModel)]="departmentCheckedValues[department.departmentName]"
+                                    (change)="onDepartmentCheckboxChange(department.departmentName, $event)"> {{
+                                department.departmentName
+                                }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="right-filter" id="right-filter" *ngIf="isAnyCheckboxChecked()">
+            <button class="reset" (click)="filterReset()">Reset</button>
+            <button class="apply" (click)="filtering()">Apply</button>
+        </div>
+    </div>
+    <div class="details-wrapper">
+        <div class="role-details">
+            <div class="details-card" *ngFor="let role of allRoles">
+                <div class="line" id="line">
+                    <div class="right-text">
+                        <b>{{role.roleName}}</b>
+                    </div>
+                    <div>
+                        <img src="assets/edit.svg" alt="" class="edit-symbol">
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="icon">
+                        <img src="assets/team_svgrepo.com.svg" alt="" class="">
+                        <span> Department</span>
+                    </div>
+                    <div class="right-text">
+                        {{role.departmentName}}
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="icon">
+                        <img src="assets/location-pin-alt-1_svgrepo.com.svg" alt="">
+                        <span> Location</span>
+                    </div>
+                    <div class="right-text">{{role.locationName}}</div>
+                </div>
+                <div class="line">
+                    <div class="right-text">Total Employees</div>
+                    <div class="many-users">
+                        <i class="fa-solid fa-user-group"></i>
+                        <i class="fa-solid fa-user-group"></i>
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+                </div>
+                <div class="line">
+                    <div class="icon"></div>
+                    <div class="right-text" (click)="viewEmployees(role.rolesId)">
+                        <span>View all employees </span>
+                        <span class="right-arrow">&rarr;</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!allRoles || allRoles.length==0" class="error">
+                No Roles found.
+            </div>
+        </div>
+    </div>
+</div>

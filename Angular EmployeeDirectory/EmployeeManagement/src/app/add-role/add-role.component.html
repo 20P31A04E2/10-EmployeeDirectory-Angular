@@ -1,0 +1,93 @@
+<div *ngIf="showAlert" id="alertBox" class="alertBox">
+    <div class="alertContent">
+        <span class="successMessage">Role added successfully</span>
+    </div>
+</div>
+<div class="add-role-wrapper">
+    <form [formGroup]="addRoleForm" *ngIf="addRoleForm" (ngSubmit)="onSubmit()">
+        <div class="form-wrapper">
+            <div class="new-role">
+                <div>
+                    <h3>Create new role</h3>
+                </div>
+                <div class="newrole-details">
+                    <div class="role-name">
+                        <p>Role Name</p>
+                        <input type="text" formControlName="roleName">
+                        <div
+                            *ngIf="addRoleForm.controls['roleName'].invalid &&(addRoleForm.controls['roleName'].dirty || addRoleForm.controls['roleName'].touched || isFormValid)">
+                            <div *ngIf="addRoleForm.controls['roleName'].errors?.['required']" class="error">
+                                Location is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="department">
+                        <p>Department</p>
+                        <select formControlName="departmentName">
+                            <option>Select Department</option>
+                            <option *ngFor="let department of allDepartments" [value]="department.departmentId">{{department.departmentName}}</option>
+                        </select>
+                        <div
+                            *ngIf="addRoleForm.controls['departmentName'].invalid &&(addRoleForm.controls['departmentName'].dirty || addRoleForm.controls['departmentName'].touched || isFormValid)">
+                            <div *ngIf="addRoleForm.controls['departmentName'].errors?.['required']" class="error">
+                                Department is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="role-description">
+                <p>Description</p>
+                <textarea cols="40" rows="5" placeholder="Text" formControlName="roleDescription"></textarea>
+                <div
+                    *ngIf="addRoleForm.controls['roleDescription'].invalid &&(addRoleForm.controls['roleDescription'].dirty || addRoleForm.controls['roleDescription'].touched || isFormValid)">
+                    <div *ngIf="addRoleForm.controls['roleDescription'].errors?.['required']" class="error">
+                        Firstname is required.
+                    </div>
+                    <div *ngIf="addRoleForm.controls['roleDescription'].errors?.['minlength']" class="error">
+                        Firstname must be at least 5 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="location">
+                <p>Location</p>
+                <select formControlName="locationName">
+                    <option>Select Location</option>
+                    <option *ngFor="let location of allLocations" [value]="location.locationId">{{location.locationName}}</option>
+                </select>
+                <div
+                    *ngIf="addRoleForm.controls['locationName'].invalid &&(addRoleForm.controls['locationName'].dirty || addRoleForm.controls['locationName'].touched || isFormValid)">
+                    <div *ngIf="addRoleForm.controls['locationName'].errors?.['required']" class="error">
+                        Location is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="sec">
+                <label>Assign Employees</label>
+                <input type="text" id="searchInput" class="managerName" placeholder="Search"
+                    [(ngModel)]="searchQueryManager" (focus)="onManagerFocus()" (input)="onManagerInputChange($event)"
+                    [ngModelOptions]="{standalone: true}">
+                <div *ngIf="showManagerDropdown" class="dropdown-container">
+                    <div *ngFor="let manager of filteredManagers" class="dropdown-content">
+                        <div class="option">
+                            <div class="opt-left">
+                                <i class="fas fa-user-circle profile-i"></i>
+                                <span class="name">{{ manager.firstName }}</span>
+                            </div>
+                            <div class="opt-right">
+                                <input type="checkbox" class="option-checkbox"
+                                    [checked]="selectedManagers.includes(manager.firstName)"
+                                    (change)="toggleManagerSelection(manager.firstName)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottomButtons">
+            <button class="cancel-btn"><a [routerLink]="['/roles']">Cancel</a></button>
+            <button type="submit" class="role-btn">Add Role</button>
+        </div>
+    </form>
+</div>
